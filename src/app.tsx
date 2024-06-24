@@ -5,8 +5,6 @@ import type { Settings as LayoutSettings } from '@ant-design/pro-components';
 import { PageLoading, SettingDrawer } from '@ant-design/pro-components';
 import type { RunTimeLayoutConfig } from 'umi';
 import { history, Link } from 'umi';
-import defaultSettings from '../config/defaultSettings';
-import { currentUser as queryCurrentUser } from './services/ant-design-pro/api';
 import type {RequestConfig} from "@@/plugin-request/request";
 import {getCurrentUser} from "@/services/nsjz-bi/userController";
 
@@ -24,7 +22,7 @@ export const initialStateConfig = {
 
 export const request: RequestConfig={
   //prefix: 'http://localhost:8080',
-  timeout: 10001
+  timeout: 1000*60*3
 };
 
 /**
@@ -41,23 +39,23 @@ export async function getInitialState(): Promise<{
       const user = await getCurrentUser();
       return user.data;
     } catch (error) {
-      //history.push(loginPath);
+      history.push(loginPath);
     }
 
     return undefined;
   };
   // 如果不是登录页面，执行
-  if (NO_NEED_WHITE_LIST.includes(history.location.pathname)) {
+  if (!NO_NEED_WHITE_LIST.includes(history.location.pathname)) {
     const currentUser = await fetchUserInfo();
     return {
-      fetchUserInfo,
+      //fetchUserInfo,
       currentUser,
-      settings: defaultSettings,
+      //settings: defaultSettings,
     };
   }
   return {
-    fetchUserInfo,
-    settings: defaultSettings,
+    // fetchUserInfo,
+    // settings: defaultSettings,
   };
 }
 

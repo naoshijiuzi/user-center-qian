@@ -5,15 +5,14 @@ import {
 } from '@ant-design/icons';
 import {
   LoginForm,
-  ProFormCheckbox,
-  ProFormText,
 } from '@ant-design/pro-components';
-import {Alert, Divider, message, Tabs} from 'antd';
+import {Divider, message, Tabs} from 'antd';
 import React, { useState} from 'react';
 import {history, Link, useModel} from 'umi';
 import styles from './index.less';
-import {getCurrentUser, userLogin} from "@/services/nsjz-bi/userController";
+import {getCurrentUser, userLogin} from '@/services/nsjz-bi/userController';
 import {flushSync} from "react-dom";
+import {ProFormCheckbox, ProFormText} from "@ant-design/pro-components";
 
 /*const LoginMessage: React.FC<{
   content: string;
@@ -30,7 +29,7 @@ import {flushSync} from "react-dom";
 const Login: React.FC = () => {
  // const [userLoginState, setUserLoginState] = useState<API.LoginResult>({});
   const [type, setType] = useState<string>('account');
-  const { initialState, setInitialState } = useModel('@@initialState');
+  const {setInitialState } = useModel('@@initialState');
   //const { status, type: loginType } = userLoginState;
   const fetchUserInfo = async () => {
     const res = await getCurrentUser();
@@ -48,6 +47,7 @@ const Login: React.FC = () => {
       // 登录
       console.log("登录参数，",values)
       const res = await userLogin(values);
+      console.log("res=",res)
       if (res.code===0) {
         const defaultLoginSuccessMessage = '登录成功！';
         message.success(defaultLoginSuccessMessage);
@@ -56,7 +56,10 @@ const Login: React.FC = () => {
         //跳转回登录前的页面
         const urlParams = new URL(window.location.href).searchParams;
 
-        history.push(urlParams.get('redirect') || '/');
+        setTimeout(()=>{
+          history.push(urlParams.get('redirect') || '/');
+        },100)
+
         return;
       }else{
         message.error(res.message);

@@ -36,7 +36,7 @@ export async function userLogin(body: API.UserLoginRequest, options?: { [key: st
 
 /** 此处后端没有提供注释 POST /user/logout */
 export async function userLogout(options?: { [key: string]: any }) {
-  return request<API.BaseResponseInteger>('/user/logout', {
+  return request<API.BaseResponseInteger>('/api/user/logout', {
     method: 'POST',
     ...(options || {}),
   });
@@ -47,7 +47,7 @@ export async function userRegister(
   body: API.UserRegisterRequest,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseLong>('/user/register', {
+  return request<API.BaseResponseLong>('/api/user/register', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -63,7 +63,7 @@ export async function searchUsers(
   params: API.searchUsersParams,
   options?: { [key: string]: any },
 ) {
-  return request<API.BaseResponseListUser>('/user/search', {
+  return request<API.BaseResponseListUser>('/api/user/search', {
     method: 'GET',
     params: {
       ...params,

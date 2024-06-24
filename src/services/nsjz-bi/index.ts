@@ -2,9 +2,9 @@
 /* eslint-disable */
 // API 更新时间：
 // API 唯一标识：
-import * as userController from './userController';
-import * as chartController from './chartController';
+import * as yonghujiekou from './userController';
+import * as tubiaojiekou from './chartController';
 export default {
-  userController,
-  chartController,
+  yonghujiekou,
+  tubiaojiekou,
 };

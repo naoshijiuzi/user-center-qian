@@ -13,7 +13,7 @@ export default [
   {
     path:'/add_chart',
     name: '添加图表页',
-    icon: 'smile',
+    icon: 'BarChart',
     component: './AddChart'
   },
   {

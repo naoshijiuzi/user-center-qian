@@ -1,4 +1,11 @@
 declare namespace API {
+  type BaseResponseBiResponse = {
+    code?: number;
+    data?: BiResponse;
+    message?: string;
+    description?: string;
+  };
+
   type BaseResponseBoolean = {
     code?: number;
     data?: boolean;
@@ -48,6 +55,13 @@ declare namespace API {
     description?: string;
   };
 
+  type BaseResponseString = {
+    code?: number;
+    data?: string;
+    message?: string;
+    description?: string;
+  };
+
   type BaseResponseUser = {
     code?: number;
     data?: User;
@@ -55,8 +69,15 @@ declare namespace API {
     description?: string;
   };
 
+  type BiResponse = {
+    genChart?: string;
+    genResult?: string;
+    chartId?: number;
+  };
+
   type Chart = {
     id?: number;
+    name?: string;
     goal?: string;
     chartData?: string;
     chartType?: string;
@@ -69,6 +90,7 @@ declare namespace API {
   };
 
   type ChartAddRequest = {
+    name?: string;
     goal?: string;
     chartData?: string;
     chartType?: string;
@@ -80,6 +102,7 @@ declare namespace API {
     sortField?: string;
     sortOrder?: string;
     id?: number;
+    name?: string;
     goal?: string;
     chartType?: string;
     userId?: number;
@@ -87,6 +110,7 @@ declare namespace API {
 
   type ChartUpdateRequest = {
     id?: number;
+    name?: string;
     goal?: string;
     chartData?: string;
     chartType?: string;
@@ -100,6 +124,17 @@ declare namespace API {
 
   type DeleteRequest = {
     id?: number;
+  };
+
+  type genChartByAiParams = {
+    file?: any;
+  };
+
+  type GenChartByAiRequest = {
+    file?: string;
+    name?: string;
+    goal?: string;
+    chartType?: string;
   };
 
   type getChartByIdParams = {
@@ -135,6 +170,12 @@ declare namespace API {
 
   type searchUsersParams = {
     username: string;
+  };
+
+  type uploadFile2Params = {
+    name: string;
+    goal: string;
+    chartType: string;
   };
 
   type User = {
